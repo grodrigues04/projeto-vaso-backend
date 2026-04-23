@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
+const db = require('./db.js');
 
 app.use(cors());
 app.use(express.json({ limit: '10kb' }));
@@ -16,7 +16,7 @@ app.post('/umidade', (req, res) => {
   if (!req.body || typeof req.body.umidade !== 'number') {
     return res.status(400).send('invalid body');
   }
-
+  db.salvar_umidade(req.body.umidade);
   console.log('Dados recebidos:', req.body);
   res.sendStatus(200);
 });
