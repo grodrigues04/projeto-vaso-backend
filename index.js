@@ -5,7 +5,7 @@ const db = require('./db.js');
 app.use(cors()); // libera qualquer origem
 app.use(express.json());
 
-app.get('/umidade', (req, res) => {
+app.post('/umidade', (req, res) => {
   console.log('Dados recebidos:', req.body);
   res.sendStatus(200);
 });
