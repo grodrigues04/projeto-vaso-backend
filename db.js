@@ -3,13 +3,14 @@ const clientDb  = require('./mongo.js');
 
 
 const banco = {
-    listar: async (params) => {
+    listar_histórico: async (params) => {
 
         try {
             await clientDb.client.connect();
             const database = await clientDb.client.db("vaso");
             const collection = await database.collection("infos");
             return await collection.find().toArray();
+
         } catch (e) {
             console.log('Ocorreu um erro ao recuperar os itens da tabela', e);
         }
@@ -52,8 +53,21 @@ const banco = {
                 }
             }
 
+            console.log("Salvo no mongoDB:", umidade);
         } catch (e) {
             console.log('Erro ao salvar umidade', e);
+        }
+    },
+
+    dados_atuais: async () => {
+        try {
+            await clientDb.client.connect();
+            const database = await clientDb.client.db("vaso");
+            const collection = await database.collection("current_infos");
+            return await collection.find().toArray();
+
+        } catch (e) {
+            console.log('Ocorreu um erro ao recuperar os itens da tabela', e);
         }
     }
 
