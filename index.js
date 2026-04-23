@@ -10,6 +10,11 @@ app.post('/umidade', (req, res) => {
   res.sendStatus(200);
 });
 
+app.get('/teste', async (req, res) => {
+    console.log('Teste de rota');
+    res.sendStatus(200);
+});
+
 app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor rodando na porta 3000');
 });
