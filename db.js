@@ -3,14 +3,13 @@ const clientDb  = require('./mongo.js');
 
 
 const banco = {
-    listar_histórico: async (params) => {
-
+    listar_historico: async (params) => {
+        console.log('Listando histórico com parâmetros:', params);
         try {
             await clientDb.client.connect();
             const database = await clientDb.client.db("vaso");
-            const collection = await database.collection("infos");
+            const collection = await database.collection("history");
             return await collection.find().toArray();
-
         } catch (e) {
             console.log('Ocorreu um erro ao recuperar os itens da tabela', e);
         }

@@ -37,6 +37,17 @@ app.get('/dados_atuais', async (req, res) => {
     }
 })
 
+app.get('/historico', async (req, res) => {
+    try {
+        const historico = await db.listar_historico();
+        console.log("Histórico:", historico);
+        res.status(200).send({historico});
+    } catch (e) {
+        console.log('Erro ao listar histórico', e);
+        res.status(500).send('Erro ao listar histórico');
+    }
+})
+
 app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor rodando na porta 3000');
 });
